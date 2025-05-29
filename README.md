@@ -3,7 +3,9 @@
 
 ## 📖 Overview
 
-This repository contains the example project for **Lesson 1: Test Management (TDD)** from the **MBA in Software Engineering** at **USP/ESALQ**. It demonstrates how to drive the design and implementation of domain entities (`User` and `Task`) using **Test-Driven Development (TDD)** in Python.
+This repository contains the example project for **Lesson 1: Test Management (TDD)
+** from the **MBA in Software Engineering** at **USP/ESALQ**.
+It demonstrates how to drive the design and implementation of domain entities (`User` and `Task`) using **Test-Driven Development (TDD)** in Python.
 
 ---
 
