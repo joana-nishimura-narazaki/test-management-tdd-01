@@ -48,53 +48,6 @@ pip install -r requirements.txt
    pytest --cov=referencia
    ```
 
----
-
-## 📁 Estrutura do Projeto
-
-```
-referencia/
-├── app/
-│   ├── application/
-│   │   └── user/
-│   │       ├── create_user.py
-│   │       └── find_user.py
-│   ├── domain/
-│   │   ├── task/
-│   │   │   └── task_entity.py
-│   │   └── user/
-│   │       ├── user_entity.py
-│   │       └── user_repository_interface.py
-│   └── infra/
-│       ├── api/
-│       │   ├── main.py
-│       │   └── routers/
-│       │       └── user_routers.py
-│       └── user/
-│           └── in_memory_user_repository.py
-├── tests/
-│   ├── domain/
-│   │   ├── integration/
-│   │   │   └── test_user_entity.py
-│   │   └── unit/
-│   │       ├── test_task_entity.py
-│   │       └── test_user_entity.py
-│   ├── infra/
-│   │   ├── e2e/
-│   │   │   ├── test_can_create_user.py
-│   │   │   └── test_can_get_user_by_id.py
-│   │   └── unit/
-│   │       └── test_user_in_memory_repository.py
-│   └── usecases/
-│       ├── integration/
-│       │   ├── test_create_user.py
-│       │   └── test_find_user.py
-│       └── unit/
-│           ├── test_create_user.py
-│           └── test_find_user.py
-├── requirements.txt
-└── README.md
-```
 
 ---
 
