@@ -1,120 +1,114 @@
 ````markdown
-# Test Management (TDD) — Lesson 1
+# Test Management & TDD em Python
 
-## 📖 Overview
-
-This repository contains the example project for **Lesson 1: Test Management (TDD)
-** from the **MBA in Software Engineering** at **USP/ESALQ**.
-It demonstrates how to drive the design and implementation of domain entities (`User` and `Task`) using **Test-Driven Development (TDD)** in Python.
+Este repositório reúne o projeto de gerenciamento de testes e TDD em Python, desenvolvido durante o MBA em Software Engineering na USP/ESALQ sob orientação do Prof. Helder Prado Santos.
 
 ---
 
-## 🎯 Goals
+## 📄 Descrição
 
-- Illustrate the **Red → Green → Refactor** cycle  
-- Show unit test patterns for constructors, data validation, and domain methods  
-- Enforce business rules via automated tests  
-- Organize code and tests for clarity and maintainability  
+Implementei casos de uso e entidades de domínio em Python, cobrindo:
 
----
+- Criação e busca de usuários (`CreateUser`, `FindUser`)  
+- Entidades `User` e `Task` com validações e regras de negócio  
+- Repositório em memória para persistência durante testes  
 
-## 🛠️ Technology Stack
+Em paralelo, desenvolvi **nove testes unitários** que garantem:
 
-- **Language**: Python 3.13  
-- **Testing**: pytest  
-- **Dependency Management**: pip / virtualenv  
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Python 3.8+ installed  
-- `virtualenv` (optional but recommended)
-
-### Installation
-
-1. **Clone the repository**  
-   ```bash
-   git clone https://github.com/your-username/your-repo.git
-   cd your-repo
-````
-
-2. **Create and activate a virtual environment**
-
-   ```bash
-   python -m venv .venv
-   .venv\Scripts\Activate   # Windows
-   source .venv/bin/activate # macOS/Linux
-   ```
-
-3. **Install dependencies**
-
-   ```bash
-   pip install -r requirements.txt
-   ```
+- Inicialização e validação de atributos em `Task` e `User`  
+- Funcionalidade de marcar tarefas como concluídas  
+- Coleta e contagem de tarefas pendentes  
+- Criação e busca de usuário via casos de uso  
+- Integração e E2E com FastAPI (endpoints `/users/`)  
 
 ---
 
-## 🧪 Running Tests
-
-Execute all unit and integration tests with:
+## ⚙️ Instalação
 
 ```bash
-pytest
-```
+git clone https://github.com/joana-nishimura-narazaki/test-management-tdd-01.git
+cd test-management-tdd-01
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+````
 
-You should see all tests pass:
+---
+
+## 🚀 Como Executar
+
+1. Iniciar a API FastAPI:
+
+   ```bash
+   uvicorn infra.api.main:app --reload
+   ```
+2. Testes unitários e de integração:
+
+   ```bash
+   pytest --cov=referencia
+   ```
+
+---
+
+## 📁 Estrutura do Projeto
 
 ```
-collected 10 items / 10 passed
+referencia/
+├── app/
+│   ├── application/
+│   │   └── user/
+│   │       ├── create_user.py
+│   │       └── find_user.py
+│   ├── domain/
+│   │   ├── task/
+│   │   │   └── task_entity.py
+│   │   └── user/
+│   │       ├── user_entity.py
+│   │       └── user_repository_interface.py
+│   └── infra/
+│       ├── api/
+│       │   ├── main.py
+│       │   └── routers/
+│       │       └── user_routers.py
+│       └── user/
+│           └── in_memory_user_repository.py
+├── tests/
+│   ├── domain/
+│   │   ├── integration/
+│   │   │   └── test_user_entity.py
+│   │   └── unit/
+│   │       ├── test_task_entity.py
+│   │       └── test_user_entity.py
+│   ├── infra/
+│   │   ├── e2e/
+│   │   │   ├── test_can_create_user.py
+│   │   │   └── test_can_get_user_by_id.py
+│   │   └── unit/
+│   │       └── test_user_in_memory_repository.py
+│   └── usecases/
+│       ├── integration/
+│       │   ├── test_create_user.py
+│       │   └── test_find_user.py
+│       └── unit/
+│           ├── test_create_user.py
+│           └── test_find_user.py
+├── requirements.txt
+└── README.md
 ```
 
 ---
 
-## 📂 Project Structure
+## 🔎 Cobertura de Testes
 
-```
-├── domain/                  # Domain entities and business logic
-│   ├── user/                # User entity and validations
-│   └── task/                # Task entity and validations
-├── tests/                   # Test suites
-│   ├── domain/unit/         # Unit tests for User and Task
-│   └── domain/integration/  # Integration tests between entities
-├── requirements.txt         # Project dependencies
-└── README.md                # This documentation
-```
+* **Unitários**: entidades (`Task`, `User`), casos de uso
+* **Integração**: métodos de domínio e repositório
+* **E2E**: endpoints FastAPI de criação/busca de usuários
+
+Relatório completo gerado pelo `coverage.py`.
 
 ---
 
-## ✍️ Test Highlights
+## 📖 Referências
 
-* **Initialization Tests**: Ensure valid instances set all attributes correctly
-* **Validation Tests**: Enforce UUID format, non-empty strings, boolean flags
-* **Domain Method Test**: Verify `Task.mark_as_completed()` toggles state
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork this repository
-2. Create a feature branch (`git checkout -b feat/your-feature`)
-3. Commit your changes (`git commit -m "Add feature"`)
-4. Push to your branch (`git push origin feat/your-feature`)
-5. Open a Pull Request
-
----
-
-## 📬 Contact
-
-Joana Nishimura Narazaki
-
-* Email: [joana.narazaki45@gmail.com](mailto:joana.narazaki45@gmail.com)
-* LinkedIn: [https://linkedin.com/in/joana-narazaki](https://linkedin.com/in/joana-narazaki)
-* GitHub: [https://github.com/joana-nishimura-narazaki](https://github.com/joana-nishimura-narazaki)
-
-```
-```
+* Prof. Helder Prado Santos – MBA Software Engineering, USP/ESALQ
+* FastAPI, pytest, coverage.py
